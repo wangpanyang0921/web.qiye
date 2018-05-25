@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>像素鸟</title>
+<style>
+	*{margin:0;padding:0;}
+	img{border:none;}
+	body{background-color:#ccc;}
+	#canvas{
+		width:800px;
+		height:400px;
+		background:url(img/bg.png) repeat-x;
+		margin-left:400px;
+		margin-top:150px;
+		border-radius:10px;
+		position:relative;
+		}
+	.mark{
+		font-size:12px;
+		float:right;
+		margin-top:50px;
+		margin-right:50px;
+		width:100px;
+		height:50px;
+	}
+	#res{
+		font-size:12px;
+		width:200px;
+		height:200px;
+		position:absolute;
+		left:50%;
+		top:50%;
+		margin-left:-100px;
+		margin-top:-150px;
+		background:rgba(0,0,0,0.5);
+		color:#fff;
+		z-index:999;
+		border-radius:50%;
+		display:none;
+		text-align:center;
+		}
+	#res p{
+		line-height:200px;
+		}
+	#res h2{
+		text-align:center;
+		padding:30px 0;
+		}
+	#res img{
+		display:block;
+		margin:0 auto;
+		}
+</style>
+</head>
+
+<body>
+	<canvas id="canvas" width="800" height="400"></canvas>
+	<div class="mark" id="mark"></div>
+	<div class="res" id="res">
+		<h2>得分：100</h2>
+		<img src="img/jin.png"/>
+	</div>
+</body>
+
+
+<script>
+	var canvas=document.getElementById("canvas");
+	var context=canvas.getContext("2d");
+	
+	//创建一个图片
+	
+	var img=new Image();
+	img.src="img/niao1.png";
+	
+	var birdX=200;
+	var birdY=100;
+	var birdTimer=null;
+	 
+	img.onload=function(){
+		if(birdTimer==null){
+			birdTimer=setInterval(function(){
+				if(birdY<=355){
+					birdY++;
+				}
+				context.clearRect(0,0,800,400);//清空痕迹
+				drawColumn();
+				context.drawImage(img,birdX,birdY);
+			},10);
+		}
+	}
+	document.onmousedown=function(){
+		
+		img.src="img/niao2.png";
+		birdY= birdY-20;
+	}
+	document.onmouseup=function(){
+		
+		img.src="img/niao1.png";
+		birdY= birdY-20;
+	}
+	
+	//柱子
+	
+	var columnArr=[];
+	var columnTimer=null;
+	
+	
+	function createColumn(){
+	
+	
+		columnTimer=setInterval(function(){
+		
+			var column={};//柱子容器
+			column.positionX=800;
+			column.positionY=-Math.round(Math.random()*100+100);
+			column.imgA=new Image();
+			column.imgB=new Image();
+			column.imgA.src="img/zhuzi1.png";
+			column.imgB.src="img/zhuzi2.png";
+			column.id=new Date().getTime();
+			columnArr.push(column);
+			console.log(columnArr)
+			
+		},1500);
+	}
+
+		createColumn();
+		
+		var same=null;
+		var mark=0;
+		function drawColumn(){
+			for(var i=0;i<columnArr.length;i++){
+				columnArr[i].positionX--;
+				context.drawImage(columnArr[i].imgA,columnArr[i].positionX,columnArr[i].positionY);
+				context.drawImage(columnArr[i].imgB,columnArr[i].positionX,columnArr[i].positionY+400);
+				
+				if(birdX+50>=columnArr[i].positionX&&birdX-70<=columnArr[i].positionX){
+					//加分
+					if(columnArr[i].id!=same){
+						mark ++;
+						same=columnArr[i].id;
+						document.getElementById("mark").innerHTML="得分:"+mark;
+					}
+					//碰撞
+					if(birdY<columnArr[i].positionY+250||birdY+50>columnArr[i].positionY+400){
+						clearInterval(columnTimer);
+						clearInterval(birdTimer);
+						
+						var oRes=document.getElementById("res");
+						
+						oRes.style.display="block";
+						
+						//奖牌
+						oRes.children[0].innerHTML="得分："+mark;
+						
+						if(mark>0&&mark<=10){
+							//铜牌
+							oRes.children[1].src="img/tong.png";
+						}
+						if(mark>10&&mark<=50){
+							//银牌
+							oRes.children[1].src="img/yin.png";
+						}
+						if(mark>50&&mark<=100){
+							//金牌
+							oRes.children[1].src="img/jin.png";
+						}
+						if(mark>100){
+							//白金牌
+							oRes.children[1].src="img/huangguan.png";
+						}
+						setTimeout(function(){
+							oRes.innerHTML="<p>5秒后游戏重新开始</p>";
+							setTimeout(function(){
+								location.reload();
+							},3000);
+						
+						},3000)
+					}
+
+				}
+				
+			}
+			
+		}
+	
+	
+	 
+	 
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
