@@ -1,0 +1,138 @@
+@charset "utf-8";
+/* CSS Document */
+#box {
+	width: 1007px;
+	height: 100%;
+	margin: 0px auto;
+	}
+#top {
+	height: 469px;
+	}
+#main {
+	width: 886px;
+	height: 305px;
+	margin: 0px auto;
+	}
+#left {
+	width: 202px;
+	height: 280px;
+	float: left;
+	padding-top: 25px;
+	}
+#commodity {
+	width: 164px;
+	height: 164px;
+	background-image: url(../images/12501.gif);
+	background-repeat: no-repeat;
+	padding: 32px 10px 10px 12px;
+	}
+#commodity li {
+	list-style-type: none;
+	background-image: url(../images/12502.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	line-height: 28px;
+	padding-left: 15px;
+	color: #F00;
+	}
+#family {
+	height: 25px;
+	margin-top: 40px;
+	}
+#jumpMenu {
+	width: 180px;
+	height: 21px;
+	background-color: #CCC;
+	border: solid 1px #7F9DB9;
+	}
+#center {
+	width: 520px;
+	height: 305px;
+	float: left;
+	}
+#industry-title {
+	width: 501px;
+	height: 18px;
+	background-image: url(../images/12503.gif);
+	background-repeat: no-repeat;
+	}
+#industry-title img {
+	float: right;
+	margin-top: 5px;
+	}
+#industry-pic {
+	width: 92px;
+	height: 102px;
+	margin-top: 15px;
+	padding-left: 10px;
+	float: left;
+	}
+#industry-pic img {
+	border: solid 3px #CCC;
+	}
+#industry {
+	width: 399px;
+	height: 102px;
+	margin-top: 15px;
+	float: left;
+	}
+#industry li {
+	list-style-type: none;
+	line-height: 20px;
+	background-image: url(../images/12507.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 15px;
+	}
+#news-title {
+	clear: left;
+	width: 501px;
+	height: 18px;
+	background-image: url(../images/12504.gif);
+	background-repeat: no-repeat;
+	}
+#news-title img {
+	float: right;
+	margin-top: 5px;
+	}
+#news-pic {
+	width: 92px;
+	height: 102px;
+	margin-top: 15px;
+	padding-left: 10px;
+	float: left;
+	}
+#news-pic img {
+	border: solid 3px #CCC;
+	}
+#news {
+	width: 399px;
+	height: 102px;
+	margin-top: 15px;
+	float: left;
+	}
+#news li {
+	list-style-type: none;
+	line-height: 20px;
+	background-image: url(../images/12507.gif);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 15px;
+	}
+#right {
+	width: 164px;
+	height: 280px;
+	float: left;
+	padding-top: 25px;
+	}
+#bottom {
+	width: 587px;
+	height: 62px;
+	background-image: url(../images/12508.gif);
+	background-repeat: no-repeat;
+	padding-top: 30px;
+	padding-left: 420px;
+	line-height: 25px;
+	}
+
+
